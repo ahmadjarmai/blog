@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %} list {% endblock title %}  
+{% block content %}
+<div class="p-4 p-md-5 mb-4 rounded">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">Hey, Ahmadev Here</h1>
+      <p class="lead my-3">Dreaming of becoming Django and Flask jedi?</p>
+      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+    </div>
+</div>
+  <h3 class="pb-4 mb-4 fst-italic">
+    Popular Categories
+  </h3>
+  <div class="nav-scroller py-1 mt-2 mb-2 d-block ">
+    <div class="nav d-flex  justify-content-between">
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">flask</button>
+      </a>
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">Django</button>
+      </a>
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">ML</button>    
+      </a>
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">Celery</button>
+      </a>
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">Redis</button>    
+      </a>
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">Memcache</button>
+      </a>
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">Nextjs</button>    
+      </a>
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">Django</button>
+      </a>
+      <a class="link-secondary" href="#">
+        <button type="button" class="btn btn-secondary">ML</button>    
+      </a>                   
+    </div>
+  </div>       
+  <div class="col-md-8">
+    <h3 class="pb-4 mb-3 fst-italic ">
+      Most Recent Posts
+    </h3>       
+    {% for post in posts %} 
+    <article class="blog-post">
+      <h2 class="blog-post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }} </a></h2>
+      <p class="blog-post-meta fst-italic">{{ post.created }} by <a href="#">{{ post.author }}</a></p>
+      <p>{{ post.body }}</p>
+    </article>    
+    {% endfor %}
+    <nav class="blog-pagination" aria-label="Pagination">
+        {% if posts.has_previous %}
+      <a class="btn btn-outline-primary" href="?page={{ posts.previous_page_number }}">Previous</a>
+      {% endif %}
+      <span class="current ">
+       Page {{posts.number}} of {{ posts.paginator.num_pages }}
+      </span>
+       {% if posts.has_next %}
+      <a class="btn btn-outline-secondary" href="?page={{ posts.next_page_number }}" tabindex="-1" aria-disabled="true">Next</a>
+      {% endif %}
+    </nav>
+  </div>
+  {% endblock content %}
+    
