@@ -1,4 +1,11 @@
+{% load blog_tags %}
 {% load static %} 
+<!-- django-bootstrap -->
+{% load django_bootstrap5 %}
+<!-- Load CSS and JavaScript and bootstrap_messages -->
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,44 +68,51 @@
           {% endblock content %}                 
           <div class="col-md-4">
             <div class="position-sticky" style="top: 2rem;">
-              <div class="p-4 mb-3 bg-dark text-white rounded">
-                <h4 class="fst-italic">About</h4>
-                <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
-              </div>
+              <p> this is my blog i have written {% total_post %} post so far </p>
+              <h4 class="fst-italic">Latest posts</h4>
+              {% show_latest_posts 3 %}
               <div class="p-4">
                 <h4 class="fst-italic">Categories</h4>
-                <ol class="list-unstyled category">
+                <div class="row">
+                  <div class="col-md-4">
+                  <ol class="list-unstyled category d-block ">
+                   <li>
+                    <a class="link-secondary" href="#">
+                      <button type="button" class="btn btn-warning">Flask</button>
+                    </a>
+                   </li>
                   <li>
                     <a class="link-secondary" href="#">
-                      <button type="button" class="btn btn-secondary">Flask</button>
+                      <button type="button" class="btn btn-light">Django</button>
                     </a>
                   </li>
                   <li>
                     <a class="link-secondary" href="#">
-                      <button type="button" class="btn btn-secondary">Django</button>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="link-secondary" href="#">
-                      <button type="button" class="btn btn-secondary">Celery</button>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="link-secondary" href="#">
-                      <button type="button" class="btn btn-secondary">Redis</button>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="link-secondary" href="#">
-                      <button type="button" class="btn btn-secondary">Nextjs</button>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="link-secondary" href="#">
-                      <button type="button" class="btn btn-secondary">React</button>
+                      <button type="button" class="btn btn-danger">Celery</button>
                     </a>
                   </li>
                 </ol>
+                </div>
+                <div class="col-md-4">
+                  <ol class="list-unstyled category d-block">
+                  <li>
+                    <a class="link-secondary" href="#">
+                      <button type="button" class="btn btn-info">Redis</button>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-secondary" href="#">
+                      <button type="button" class="btn btn-success">Nextjs</button>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-secondary" href="#">
+                      <button type="button" class="btn btn-primary">React</button>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
               </div>
               <div class="p-4">
                 <h4 class="fst-italic">Editors's Pick </h4>
@@ -117,12 +131,16 @@
                   <li><a href="#">April 2020</a></li>
                 </ol>
               </div>
+              <div class="p-4 mb-3 bg-dark text-white rounded">
+                <h4 class="fst-italic">About</h4>
+                <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
+              </div>
             </div>
           </div>
         </div>     
       </main>
       <footer class="blog-footer">
-        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        <p>Alright Reserve Ahmadev</a>.</p>
         <p>
           <a href="#">Back to top</a>
         </p>

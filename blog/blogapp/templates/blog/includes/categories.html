@@ -1,0 +1,43 @@
+<div class="nav-scroller py-1 mt-2 mb-2 d-block ">
+    <div class="nav d-flex  justify-content-between">
+        {% for category in categories %}
+           {% if category.name == 'django' %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-primary">{{ category.name }}</button>
+             </a> 
+             {% elif category.name == 'flask' %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-secondary">{{ category.name }}</button>
+             </a>
+             {% elif category.name == 'python' %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-success">{{ category.name }}</button>
+             </a>
+             {% elif category.name == 'Redis' %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-danger">{{ category.name }}</button>
+             </a>
+             {% elif category.name == 'Mencache' %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-info">{{ category.name }}</button>
+             </a>
+             {% elif category.name == 'Celery' %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-warning">{{ category.name }}</button>
+             </a>
+             {% elif category.name == 'RabbitMq' %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-light">{{ category.name }}</button>
+             </a>
+             {% elif category.name == 'javascript' %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-danger">{{ category.name }}</button>
+             </a>
+             {% else %}
+             <a class="link-secondary" href="{% url 'blog:post_list_by_tag' category.slug %}">
+               <button type="button" class="btn btn-info">{{ category.name }}</button>
+             </a>
+             {% endif %}
+      {% endfor %}   
+    </div>
+  </div>     

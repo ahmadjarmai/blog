@@ -1,12 +1,44 @@
 {% extends 'base.html' %}
 {% block title %} details {% endblock title %} 
+{% load django_bootstrap5 %}
+<!-- Load CSS and JavaScript and bootstrap_messages -->
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
 {% block content %}
 <div class="col-md-8">    
     <article class="blog-post">
       <h2 class="blog-post-title">{{ post.title }}</h2>
       <p class="blog-post-meta fst-italic">{{ post.created }} by <a href="#">{{ post.author }}</a></p>
       <p> {{ post.body|linebreaks }}</p>  
+          
+        <h1>Comments</h1> 
+        <!-- List of comments -->
+        {% with comments.count as  total_comments %}
+        {{ total_comments }} comment{{ total_comments|pluralize }}
+        {% endwith %}
+        {% for comment in comments %}
+        <div class="comments-list">
+          <div class="card mb-3">
+            <div class="card-body bg-dark">
+              <p class="card-title fst-italic">Comment {{ forloop.counter }} by {{ comment.name }}
+                {{ comment.created }}</p>
+              <p class="card-text">{{ comment.body }}</p>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <p>There are no comments.</p>
+        {% endfor %}  
+        <ul class="list-unstyled">
+          {% for post in similar_posts %}
+          <li>
+          <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+          </li>
+          {% endfor %}
+         </ul>
+        {% include "blog/includes/comment_form.html" %}  
     </article>    
   </div>
-{% endblock content %}
-    
+{% endblock %}

@@ -11,46 +11,26 @@
   <h3 class="pb-4 mb-4 fst-italic">
     Popular Categories
   </h3>
-  <div class="nav-scroller py-1 mt-2 mb-2 d-block ">
-    <div class="nav d-flex  justify-content-between">
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">flask</button>
-      </a>
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">Django</button>
-      </a>
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">ML</button>    
-      </a>
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">Celery</button>
-      </a>
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">Redis</button>    
-      </a>
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">Memcache</button>
-      </a>
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">Nextjs</button>    
-      </a>
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">Django</button>
-      </a>
-      <a class="link-secondary" href="#">
-        <button type="button" class="btn btn-secondary">ML</button>    
-      </a>                   
-    </div>
-  </div>       
+  {% include "blog/includes/categories.html"  with categories=tag_list %}
   <div class="col-md-8">
     <h3 class="pb-4 mb-3 fst-italic ">
       Most Recent Posts
-    </h3>       
+    </h3>    
+    {% if tag %}
+    <p> post tagged with '{{ tag.name }}'</p> 
+    {% endif %}  
     {% for post in posts %} 
     <article class="blog-post">
-      <h2 class="blog-post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }} </a></h2>
+      <h3 class="blog-post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }} </a></h3>
+      <p class="tags fst-italic">Tags: {% for tag in  post.tags.all %} 
+        <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+          {{ tag.name }}
+        </a>
+        {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </p>
       <p class="blog-post-meta fst-italic">{{ post.created }} by <a href="#">{{ post.author }}</a></p>
-      <p>{{ post.body }}</p>
+      <p>{{ post.body|truncatewords:30|linebreaks }}</p>
     </article>    
     {% endfor %}
     <nav class="blog-pagination" aria-label="Pagination">
